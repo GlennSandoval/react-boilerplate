@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "declaration": false,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "incremental": true,
+    "lib": ["dom", "es6", "es2017", "scripthost", "es2015.promise"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./dist/",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES6"
+  },
+  "exclude": ["./node_modules"],
+  "include": ["./src/**/*", "./tests/**/*"],
+  "compileOnSave": false
+}

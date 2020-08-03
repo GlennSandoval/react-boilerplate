@@ -1,0 +1,47 @@
+@import "style/colors";
+
+#App {
+  display: grid;
+  font-family: "Verdana", sans-serif;
+  font-size: 16px;
+  justify-content: center;
+
+  margin-bottom: 1rem;
+
+  grid-template-columns: minmax(1rem ,1fr) minmax(400px, 635px) 24px minmax(auto, 447px) minmax(1rem ,1fr);
+  grid-template-rows: 73px 153px auto 73px;
+  grid-template-areas:
+          "titleleft title title title titleright"
+          "leftgutter header header header rightgutter"
+          "leftgutter content content content rightgutter"
+          "footerleft footer footer footer footerright";
+
+  .box {
+    border-width: 0;
+    border-style: solid;
+    border-color: $primary-dary-grey;
+    border-radius: 8px;
+
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.12);
+    background-color: white;
+
+    padding: 30px 46px;
+  }
+
+  #Title {
+    grid-area: 1 / titleleft / 1 / titleright;
+    color: white;
+    text-align: center;
+    line-height: 73px;
+    background: $secondary-light-blue;
+  }
+
+  #Header {
+    grid-area: header;
+  }
+
+  #Content {
+    grid-area: details;
+  }
+
+}
