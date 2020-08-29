@@ -3,4 +3,10 @@
 
 body {
   background: $secondary-light-grey;
+  overflow: hidden;
+
+  #root {
+    height: 100%;
+  }
+
 }

@@ -5,43 +5,62 @@
   font-family: "Verdana", sans-serif;
   font-size: 16px;
   justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  margin-bottom: 1em;
 
-  margin-bottom: 1rem;
-
-  grid-template-columns: minmax(1rem ,1fr) minmax(400px, 635px) 24px minmax(auto, 447px) minmax(1rem ,1fr);
-  grid-template-rows: 73px 153px auto 73px;
+  grid-template-columns: minmax(5px, 1fr) minmax(10px, 400px) minmax(290px, 400px) minmax(10px, 400px) minmax(5px, 1fr);
+  grid-template-rows: 50px minmax(2em, 4em) minmax(5em, auto) minmax(1em, 3em);
   grid-template-areas:
-          "titleleft title title title titleright"
-          "leftgutter header header header rightgutter"
+          "headerleft header header header headerright"
+          "leftgutter title title title rightgutter"
           "leftgutter content content content rightgutter"
           "footerleft footer footer footer footerright";
 
-  .box {
-    border-width: 0;
-    border-style: solid;
-    border-color: $primary-dark-grey;
-    border-radius: 8px;
-
-    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.12);
-    background-color: white;
-
-    padding: 30px 46px;
-  }
-
-  #Title {
-    grid-area: 1 / titleleft / 1 / titleright;
+  #Header {
+    grid-area: 1 / headerleft / 1 / headerright;
     color: white;
     text-align: center;
-    line-height: 73px;
+    line-height: 50px;
     background: $secondary-light-blue;
   }
 
-  #Header {
-    grid-area: header;
+  #Title {
+    grid-area: title;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   #Content {
-    grid-area: details;
+    overflow: hidden;
+    grid-area: content;
+    display: flex;
+
+    .box {
+      flex: 1;
+      border-width: 0;
+      border-style: solid;
+      border-color: $primary-dark-grey;
+      border-radius: 8px;
+
+      box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.12);
+      background-color: white;
+
+      padding: 30px 46px;
+      overflow-y: auto;
+    }
+  }
+
+  footer {
+    grid-area: footerleft / footer / footerright;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: .75em;
+    color: $primary-dark-grey;
   }
 
 }
