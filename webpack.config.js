@@ -44,7 +44,7 @@ module.exports = {
         use: [
           "style-loader",
           { loader: "css-loader", options: { sourceMap: IS_DEV_SERVER } },
-          { loader: "postcss-loader", options: { sourceMap: IS_DEV_SERVER, options: {} } },
+          { loader: "postcss-loader", options: { sourceMap: IS_DEV_SERVER } },
           { loader: "sass-loader", options: { sourceMap: IS_DEV_SERVER } }
         ]
       },
