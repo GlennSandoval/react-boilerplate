@@ -1,0 +1,12 @@
+// Adjust as needed
+
+// Below this size is mobile
+$breakpoint-mobile: 768px;
+
+// Below this size is tablet
+$breakpoint-tablet: 1024px;
+
+:export {
+  mobile: $breakpoint-mobile;
+  tablet: $breakpoint-tablet
+}
