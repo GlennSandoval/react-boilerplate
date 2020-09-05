@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "NODE_ENV=development webpack-dev-server --mode development --hotOnly",
-    "test": "jest"
+    "test": "jest",
+    "cypress:open": "cypress open"
   },
   "keywords": [],
   "author": "",
@@ -30,7 +31,7 @@
     "chalk": "~4.1.0",
     "copy-webpack-plugin": "~6.0.3",
     "css-loader": "~4.2.0",
-    "cypress": "~4.11.0",
+    "cypress": "~5.1.0",
     "eslint": "~7.5.0",
     "eslint-config-prettier": "~6.11.0",
     "file-loader": "~6.0.0",
