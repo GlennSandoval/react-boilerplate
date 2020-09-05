@@ -9,7 +9,7 @@ export default function App() {
         <div id="Header">React Boilerplate</div>
         <h1 id="Title">Welcome</h1>
         <div id="Content">
-          <div className="box">
+          <div className="box" id="MainContent">
             <p>Hello,</p>
             <br />
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et

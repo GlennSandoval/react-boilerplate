@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "NODE_ENV=development webpack-dev-server --mode development --hotOnly",
+    "start": "NODE_ENV=production webpack-dev-server --mode production",
     "test": "jest",
     "cypress:open": "cypress open"
   },
