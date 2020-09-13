@@ -4,10 +4,16 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const { yellow } = require("chalk");
 const { merge } = require("webpack-merge");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV || "production";
 const IS_DEV = process.env.NODE_ENV === "development";
 const IS_DEV_SERVER = process.argv[1].indexOf("webpack-dev-server") >= 0;
+const IS_OSX = process.platform === "darwin";
+const buildFolder = path.resolve(
+  process.cwd(),
+  process.env.BUILD_FOLDER || "dist/"
+);
 
 if (IS_DEV_SERVER) {
   console.log("Dev server");
@@ -30,10 +36,29 @@ if (NODE_ENV === "production") {
   }
 }
 
+const publicPath = IS_OSX || !IS_DEV ? path.resolve(process.cwd(), "/") : "/";
+
 const baseConfig = {
+  mode: IS_DEV ? "development" : "production",
+
+  // Don't attempt to continue if there are any errors.
+  bail: true,
+
   entry: {
     main: ["./src/index.tsx"]
   },
+
+  output: {
+    path: buildFolder,
+    filename: IS_DEV
+      ? "[name].[hash:8].bundle.js"
+      : "[name].[chunkhash].bundle.js",
+    chunkFilename: IS_DEV
+      ? "[name].[hash:8].chunk.js"
+      : "[name].[chunkhash].chunk.js",
+    publicPath
+  },
+
   resolve: {
     alias: {
       "@": path.join(process.cwd(), "src/"),
@@ -46,6 +71,7 @@ const baseConfig = {
     ],
     extensions: [".ts", ".tsx", ".js", ".jsx"]
   },
+
   module: {
     rules: [
       {
@@ -84,13 +110,14 @@ const baseConfig = {
   optimization: {
     namedModules: true,
     moduleIds: "hashed",
+    // These values have been hand tuned to help support older browsers
     splitChunks: {
-      chunks: "async",
+      chunks: "all",
+      minChunks: 2,
       minSize: 30000,
       maxSize: 0,
-      minChunks: 2,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
+      maxAsyncRequests: 20,
+      maxInitialRequests: 5,
       automaticNameDelimiter: "~",
       automaticNameMaxLength: 30,
       name: false,
@@ -101,10 +128,24 @@ const baseConfig = {
           chunks: "all",
           enforce: true
         },
+        babel: {
+          test: /[\\\/]node_modules[\\/]core-js[\\\/]/,
+          name: "polyfill",
+          chunks: "all",
+          enforce: true
+        },
+        modules: {
+          priority: -10,
+          test: /[\\\/]node_modules[\\/]/,
+          name: "modules",
+          chunks: "all",
+          enforce: true
+        },
         default: {
           priority: -20,
-          name: "core",
-          reuseExistingChunk: true
+          name: "main",
+          reuseExistingChunk: true,
+          enforce: true
         }
       }
     },
@@ -116,6 +157,7 @@ const baseConfig = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
       template: "./public/index.html",
       filename: "./index.html"
