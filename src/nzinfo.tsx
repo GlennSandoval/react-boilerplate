@@ -10,7 +10,7 @@ export default function NZInfo() {
       setPayload(payload);
     }
 
-    getNzInfo();
+    getNzInfo().catch(e => setPayload(e));
   });
 
   return (
