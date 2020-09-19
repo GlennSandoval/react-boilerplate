@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 /**
  * Retry an asynchronous function
@@ -41,7 +41,7 @@ export default function asyncComponent(importComponent: Function, Placeholder = 
    */
   class AsyncComponent<P = {}> extends Component<any> {
 
-    private unMounted: boolean;
+    unMounted: boolean;
 
     state: {
       component: typeof React.Component | null,
@@ -62,10 +62,10 @@ export default function asyncComponent(importComponent: Function, Placeholder = 
 
     async componentDidMount() {
       const self = this;
-      const result:{ default: Component<any, any, any> } = await retry(importComponent)
+      const result: { default: Component<any, any, any> } = await retry(importComponent)
         .catch((error) => {
           if (!self.unMounted) {
-            self.setState({ error });
+            self.setState({error});
           }
         });
 
@@ -85,7 +85,7 @@ export default function asyncComponent(importComponent: Function, Placeholder = 
     }
 
     render() {
-      const { component: WrappedComponent, error } = this.state;
+      const {component: WrappedComponent, error} = this.state;
 
       if (error) {
         throw error;
