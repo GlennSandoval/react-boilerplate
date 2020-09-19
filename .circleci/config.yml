@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@3.0.0
 jobs:
   build:
-    -checkout
+    - checkout
     - run:
       name: Install packages
       command: npm install
