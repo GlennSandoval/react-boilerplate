@@ -1,4 +1,4 @@
-import NZInfo from "@/nzinfo";
+import asyncComponent from "@/utilities/async-component";
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -6,6 +6,8 @@ import {
   Route
 } from "react-router-dom";
 import "./app.scss";
+
+const NZInfo = asyncComponent(() => import('@/nzinfo'));
 
 export default function App() {
 
