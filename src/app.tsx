@@ -1,21 +1,20 @@
-import asyncComponent from "@/utilities/async-component";
 import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
+import asyncComponent from "@/utilities/async-component";
 import "./app.scss";
 
-const NZInfo = asyncComponent(() => import('@/nzinfo'));
+const NZInfo = asyncComponent(() => import(/* webpackChunkName: "[request]" */ './nzinfo'));
 
 export default function App() {
-
   return (
     <Router>
       <Switch>
         <Route path="/nz">
-          <NZInfo/>
+          <NZInfo />
         </Route>
         <Route path="/">
           <div id="App">
