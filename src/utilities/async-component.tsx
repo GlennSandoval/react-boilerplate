@@ -30,20 +30,26 @@ async function retry(fn: Function, attempts = 3, interval = 1500) {
  * const Component = asyncComponent(() => import('./views/pages/Component'));
  */
 export default function asyncComponent(importComponent: Function, Placeholder = (<div />)) {
+
+  let UI: typeof React.Component | null = null;
+
   return function (props: any | null) {
-    const [Inner, setInner] = useState<typeof React.Component | null>(null);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
       async function load() {
         let payload = await retry(importComponent);
-        setInner(payload);
+        UI = payload.default;
+        setLoaded(true);
       }
 
-      load().catch(e => setInner(e));
-    });
+      if (!loaded) {
+        load().catch(console.log);
+      }
+    }, []);
 
-    if (Inner != null) {
-      return (<Inner {...props} />);
+    if (loaded && UI) {
+      return (<UI {...props} />);
     }
 
     return Placeholder;

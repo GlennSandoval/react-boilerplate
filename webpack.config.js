@@ -112,7 +112,7 @@ const baseConfig = {
     moduleIds: "hashed",
     // These values have been hand tuned to help support older browsers
     splitChunks: {
-      chunks: "all",
+      chunks: "async",
       minChunks: 2,
       minSize: 30000,
       maxSize: 0,
