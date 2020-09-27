@@ -9,7 +9,7 @@ import "./app.scss";
 
 import Form from "./form";
 
-const NZInfo = asyncComponent(() => import(/* webpackChunkName: "[request]" */ './nzinfo'));
+const NZInfo = asyncComponent(() => import(/* webpackChunkName: "[request]" */ 'page/nzinfo'));
 
 export default function App() {
   return (
