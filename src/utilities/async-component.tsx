@@ -33,7 +33,7 @@ export default function asyncComponent(importComponent: Function, Placeholder = 
 
   let UI: typeof React.Component | null = null;
 
-  return function (props: any | null) {
+  return function AsyncWrapper (props: any | null) {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
