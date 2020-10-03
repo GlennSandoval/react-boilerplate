@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+#UserDetailsForm {
+  font-family: Open Sans, sans-serif;
+
+  display: flex;
+  height: 100%;
+  background: black;
+
+  form {
+    margin: auto;
+    min-width: 375px;
+    width: 40%;
+    height: 80%;
+    background: #f5f5fa;
+    box-shadow: inset 5px 5px 10px #fbfbfb, inset -5px -5px 10px #d5d5d5;
+    border-radius: 15px;
+
+    input {
+      background: #f5f5fa;
+      box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+        inset 2px 2px 4px rgba(170, 170, 204, 0.25),
+        inset 5px 5px 10px rgba(170, 170, 204, 0.5),
+        inset -5px -5px 10px #ffffff;
+      border-radius: 40px;
+      line-height: 3em;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      padding-left: 1.5em;
+      padding-right: 1.5em;
+      width: 80%;
+    }
+
+    label {
+      margin: 1em;
+      visibility: collapse;
+    }
+
+    button {
+      background: #f5f5fa;
+      width: 216px;
+      height: 64px;
+
+      box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.5),
+        5px 5px 10px rgba(170, 170, 204, 0.25),
+        10px 10px 20px rgba(170, 170, 204, 0.5), -10px -10px 20px #ffffff;
+      border-radius: 32px;
+
+    }
+
+    .row {
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

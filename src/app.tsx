@@ -7,6 +7,8 @@ import {
 import asyncComponent from "@/utilities/async-component";
 import "./app.scss";
 
+import Form from "./form";
+
 const NZInfo = asyncComponent(() => import(/* webpackChunkName: "[request]" */ './nzinfo'));
 
 export default function App() {
@@ -15,6 +17,9 @@ export default function App() {
       <Switch>
         <Route path="/nz">
           <NZInfo />
+        </Route>
+        <Route path="/form">
+          <Form/>
         </Route>
         <Route path="/">
           <div id="App">
