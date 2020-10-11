@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 import "./form.scss";
 
@@ -14,37 +14,46 @@ export default function Form() {
   return (
     <div id="UserDetailsForm">
       <form>
-        <div className='row'>
-          <input
-            id="FirstName"
-            placeholder='first name'
-            value={info.FirstName}
-            onChange={(e) =>
-              setInfo({ ...info, FirstName: e.currentTarget.value })
-            }
-          />
+        <div className="row">
+          <div className='inset-shadow'>
+            <input
+              id="FirstName"
+              placeholder='first name'
+              value={info.FirstName}
+              onChange={(e) =>
+                setInfo({...info, FirstName: e.currentTarget.value})
+              }
+            />
+          </div>
+          <div className='inset-shadow'>
+            <input
+              id="LastName"
+              placeholder='last name'
+              value={info.LastName}
+              onChange={(e) =>
+                setInfo({...info, LastName: e.currentTarget.value})
+              }
+            />
+          </div>
+          <div className='inset-shadow'>
+            <input
+              id="Email"
+              placeholder='email'
+              value={info.Email}
+              onChange={(e) =>
+                setInfo({...info, Email: e.currentTarget.value})
+              }
+            />
+          </div>
+          <label htmlFor="selections" className="select-label">
+            <select id="selections">
+              <option>First</option>
+              <option>Second</option>
+              <option>Third</option>
+            </select>
+          </label>
+          <button type='submit'>Submit</button>
         </div>
-        <div className='row'>
-          <input
-            id="LastName"
-            placeholder='last name'
-            value={info.LastName}
-            onChange={(e) =>
-              setInfo({ ...info, LastName: e.currentTarget.value })
-            }
-          />
-        </div>
-        <div className='row'>
-          <input
-            id="Email"
-            placeholder='email'
-            value={info.Email}
-            onChange={(e) =>
-              setInfo({ ...info, Email: e.currentTarget.value })
-            }
-          />
-        </div>
-        <button type='submit'>Submit</button>
       </form>
     </div>
   );

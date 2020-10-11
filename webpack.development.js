@@ -11,6 +11,8 @@ module.exports = {
   ],
 
   devServer: {
+    // Only uncomment the below line in a safe environment
+    disableHostCheck: true,
     host,
     port,
     clientLogLevel: "warn",

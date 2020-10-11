@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+@import "style/breakpoints";
 
 #UserDetailsForm {
   font-family: Open Sans, sans-serif;
@@ -15,25 +16,17 @@
     background: #f5f5fa;
     box-shadow: inset 5px 5px 10px #fbfbfb, inset -5px -5px 10px #d5d5d5;
     border-radius: 15px;
+    overflow-y: auto;
 
-    input {
-      background: #f5f5fa;
-      box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.5),
-        inset 2px 2px 4px rgba(170, 170, 204, 0.25),
-        inset 5px 5px 10px rgba(170, 170, 204, 0.5),
-        inset -5px -5px 10px #ffffff;
-      border-radius: 40px;
-      line-height: 3em;
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-      padding-left: 1.5em;
-      padding-right: 1.5em;
-      width: 80%;
+    @media screen and (max-width: $breakpoint-mobile) {
+      height: 100%;
+      border-radius: 0;
     }
 
-    label {
-      margin: 1em;
-      visibility: collapse;
+    input {
+      background: transparent;
+      line-height: 3em;
+      padding: 0.5em 1.5em;
     }
 
     button {
@@ -42,16 +35,53 @@
       height: 64px;
 
       box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.5),
-        5px 5px 10px rgba(170, 170, 204, 0.25),
-        10px 10px 20px rgba(170, 170, 204, 0.5), -10px -10px 20px #ffffff;
-      border-radius: 32px;
+      5px 5px 10px rgba(170, 170, 204, 0.25),
+      10px 10px 20px rgba(170, 170, 204, 0.5), -10px -10px 20px #ffffff;
+      border-radius: 16px;
+    }
 
+    .select-label {
+      width: 60%;
+      position: relative;
+      &:after {
+        content: "▼";
+        position: absolute;
+        right: 12px;
+        top: 8px;
+        font-size: 1.25em;
+        color: #333333;
+      }
+    }
+
+    select {
+      margin-bottom: 1.5em;
+      width: 100%;
+      height: 3em;
+      padding-left: 1em;
+      appearance: none;
+      background: #f5f5fa;
+      box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.5),
+      5px 5px 10px rgba(170, 170, 204, 0.25),
+      10px 10px 20px rgba(170, 170, 204, 0.5), -10px -10px 20px #ffffff;
+      border-radius: 16px;
+    }
+
+    .inset-shadow {
+      background: #f5f5fa;
+      box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+      inset 2px 2px 4px rgba(170, 170, 204, 0.25),
+      inset 5px 5px 10px rgba(170, 170, 204, 0.5),
+      inset -5px -5px 10px #ffffff;
+      border-radius: 20px;
+      width: 80%;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
     }
 
     .row {
-      margin-top: 1.5em;
-      margin-bottom: 1.5em;
+      flex-direction: column;
       display: flex;
+      align-items: center;
       justify-content: center;
     }
   }
