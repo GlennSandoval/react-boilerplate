@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import App from './app';
+import Home from './home';
 
 test('Snapshot',()=>{
-  const app = renderer.create(<App/>);
+  const app = renderer.create(<Home/>);
   let tree = app.toJSON();
   expect(tree).toMatchSnapshot()
 });

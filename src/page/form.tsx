@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import "./form.scss";
+import "@/page/form.scss";
 
 const defaultState = {
   FirstName: "",
