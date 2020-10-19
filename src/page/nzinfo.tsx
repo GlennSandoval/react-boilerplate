@@ -19,6 +19,8 @@ export default function NZInfo() {
 
   return (
     <div>
+      This page fetches and displays data from a remote api every time it loads.
+      <br />
       <pre>
         {JSON.stringify(payload, null, 2)}
       </pre>

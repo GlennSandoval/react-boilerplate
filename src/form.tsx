@@ -15,6 +15,11 @@ export default function Form() {
     <div id="UserDetailsForm">
       <form>
         <div className="row">
+          <p>
+            Simple form example.
+          </p>
+        </div>
+        <div className="row">
           <div className='inset-shadow'>
             <input
               id="FirstName"

@@ -8,7 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV || "production";
 const IS_DEV = process.env.NODE_ENV === "development";
-const IS_DEV_SERVER = process.argv[1].indexOf("webpack-dev-server") >= 0;
+const IS_DEV_SERVER = (process.argv[1] || "").indexOf("webpack-dev-server") >= 0;
 const IS_OSX = process.platform === "darwin";
 const buildFolder = path.resolve(
   process.cwd(),

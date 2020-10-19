@@ -8,6 +8,11 @@
   height: 100%;
   background: black;
 
+  p {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+
   form {
     margin: auto;
     min-width: 375px;
@@ -43,6 +48,7 @@
     .select-label {
       width: 60%;
       position: relative;
+
       &:after {
         content: "▼";
         position: absolute;
