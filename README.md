@@ -41,3 +41,5 @@ It's like Selenium specifically for JS. Easy to set up and run, easy to create t
 ## ESLint / Prettier
 Code should be easy to read. Code is easy to read when it has a consistent style. The difficulty in agreeing on a code style scales exponentially with the number of developers on a team. You don't want to waste valuable time deciding where to place your curly brackets. Just use Prettier. You'll get used to it. ESLint and Prettier are integrated in this repo so if your code is not conforming it will show up as an ESLint error. Which should rarely happen since you can use your IDE of choice to apply the Prettier format.
 
+### Note about Redux
+Redux is intentionally not included. Redux is a great tool but it has specific uses. Including it greatly changes the structure and flow of an app. Use React hooks as much as possible and only add Redux when needed.
