@@ -20,6 +20,8 @@ if (IS_DEV_SERVER) {
 }
 
 // Load the webpack config for the current build environment. Environment variables need to be set prior to this.
+// This allows you to create different webpack configurations for different environments. 
+// Production is the default, a specific named environment overrides the default.
 const webPackEnvConfigPath = path.resolve(__dirname, `webpack.${NODE_ENV}.js`);
 let webPackEnvConfig;
 if (NODE_ENV === "production") {
@@ -60,6 +62,7 @@ const baseConfig = {
   },
 
   resolve: {
+    // Add a handy shortcut to the root code folder so you can write "import FooComponent from "@/components/foo"
     alias: {
       "@": path.join(process.cwd(), "src/"),
     },
@@ -69,12 +72,15 @@ const baseConfig = {
       path.resolve(process.cwd(), "./node_modules"),
       path.resolve(process.cwd(), "./src")
     ],
+    // These extentions do not need to be added to the import path. 
+    // Do not have the same file name with different extensions in the same folder or Bad Things will happen.
     extensions: [".ts", ".tsx", ".js", ".jsx"]
   },
 
   module: {
     rules: [
       {
+        // Parse JS files with Babel
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
@@ -82,11 +88,17 @@ const baseConfig = {
         }
       },
       {
+        // Parse TSX files with Typescript, then Babel
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: [{ loader: "babel-loader" }, { loader: "ts-loader" }]
       },
       {
+        // Parse Sass files
+        // sass-loader converts the files to css
+        // postcss-loader applies the autoprefixer plugin to add browser specific prefixes in the CSS. ie, moz-, ms-, etc.
+        // css-loader will process any import statements in your styles
+        // style-loader injects the css into your html
         test: /\.scss$/,
         exclude: /node_modules/,
         use: [
@@ -96,6 +108,7 @@ const baseConfig = {
           { loader: "sass-loader", options: { sourceMap: IS_DEV_SERVER } }
         ]
       },
+      // Load image files directly. Add any needed extensions here.
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
@@ -107,6 +120,7 @@ const baseConfig = {
     ]
   },
 
+  // These settings are designed to create decent modules from the apps js code. It is meant to be a balance between loading speed and upgradability.
   optimization: {
     namedModules: true,
     moduleIds: "hashed",
@@ -122,6 +136,7 @@ const baseConfig = {
       automaticNameMaxLength: 30,
       name: false,
       cacheGroups: {
+        // React and Babel will hopefully be updated infrequently so lets put it in its own module to be cached by the browser.
         react: {
           test: /[\\\/]node_modules[\\/]react.*[\\\/]/,
           name: "react",
@@ -134,6 +149,7 @@ const baseConfig = {
           chunks: "all",
           enforce: true
         },
+        // Separate node_modules from user code.
         modules: {
           priority: -10,
           test: /[\\\/]node_modules[\\/]/,
@@ -153,10 +169,12 @@ const baseConfig = {
     noEmitOnErrors: false,
     concatenateModules: true,
     minimize: !IS_DEV,
+    // If minimize is TRUE, use the Terser plugin to make the code compact.
     minimizer: [new TerserPlugin()]
   },
 
   plugins: [
+    // Clean the dist folder before building
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
       template: "./public/index.html",
