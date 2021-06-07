@@ -38,8 +38,6 @@ if (NODE_ENV === "production") {
   }
 }
 
-const publicPath = IS_OSX || !IS_DEV ? path.resolve(process.cwd(), "/") : "/";
-
 const baseConfig = {
   mode: IS_DEV ? "development" : "production",
 
@@ -57,8 +55,7 @@ const baseConfig = {
       : "[name].[chunkhash].bundle.js",
     chunkFilename: IS_DEV
       ? "[name].[hash:8].chunk.js"
-      : "[name].[chunkhash].chunk.js",
-    publicPath
+      : "[name].[chunkhash].chunk.js"
   },
 
   resolve: {
