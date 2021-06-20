@@ -20,7 +20,7 @@ if (IS_DEV_SERVER) {
 }
 
 // Load the webpack config for the current build environment. Environment variables need to be set prior to this.
-// This allows you to create different webpack configurations for different environments. 
+// This allows you to create different webpack configurations for different environments.
 // Production is the default, a specific named environment overrides the default.
 const webPackEnvConfigPath = path.resolve(__dirname, `webpack.${NODE_ENV}.js`);
 let webPackEnvConfig;
@@ -51,10 +51,10 @@ const baseConfig = {
   output: {
     path: buildFolder,
     filename: IS_DEV
-      ? "[name].[hash:8].bundle.js"
+      ? "[name].[contenthash:8].bundle.js"
       : "[name].[chunkhash].bundle.js",
     chunkFilename: IS_DEV
-      ? "[name].[hash:8].chunk.js"
+      ? "[name].[contenthash:8].chunk.js"
       : "[name].[chunkhash].chunk.js"
   },
 
@@ -69,7 +69,7 @@ const baseConfig = {
       path.resolve(process.cwd(), "./node_modules"),
       path.resolve(process.cwd(), "./src")
     ],
-    // These extentions do not need to be added to the import path. 
+    // These extentions do not need to be added to the import path.
     // Do not have the same file name with different extensions in the same folder or Bad Things will happen.
     extensions: [".ts", ".tsx", ".js", ".jsx"]
   },
@@ -119,18 +119,15 @@ const baseConfig = {
 
   // These settings are designed to create decent modules from the apps js code. It is meant to be a balance between loading speed and upgradability.
   optimization: {
-    namedModules: true,
-    moduleIds: "hashed",
+    moduleIds: "deterministic",
     // These values have been hand tuned to help support older browsers
     splitChunks: {
       chunks: "async",
       minChunks: 2,
-      minSize: 30000,
-      maxSize: 0,
+      maxSize: 30000,
       maxAsyncRequests: 20,
       maxInitialRequests: 5,
       automaticNameDelimiter: "~",
-      automaticNameMaxLength: 30,
       name: false,
       cacheGroups: {
         // React and Babel will hopefully be updated infrequently so lets put it in its own module to be cached by the browser.
@@ -163,7 +160,7 @@ const baseConfig = {
       }
     },
     runtimeChunk: "single",
-    noEmitOnErrors: false,
+    emitOnErrors: false,
     concatenateModules: true,
     minimize: !IS_DEV,
     // If minimize is TRUE, use the Terser plugin to make the code compact.
@@ -179,15 +176,6 @@ const baseConfig = {
     })
   ],
 
-  // Some libraries import Node modules but don't use them in the browser.
-  // Tell Webpack to provide empty mocks for them so importing them works.
-  node: {
-    dgram: "empty",
-    fs: "empty",
-    net: "empty",
-    tls: "empty",
-    child_process: "empty"
-  },
 };
 
 module.exports = merge(baseConfig, webPackEnvConfig);
