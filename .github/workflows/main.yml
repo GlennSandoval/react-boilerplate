@@ -27,13 +27,10 @@ jobs:
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.2.0
-
-      - name: Install
-        uses: CultureHQ/actions-yarn@master
         with:
-          args: install
+          node-version: '14'
+          cache: 'yarn'
+      
+      - run: yarn install
           
-      - name: Build
-        uses: CultureHQ/actions-yarn@master
-        with:
-          args: build
+      - run: yarn build
