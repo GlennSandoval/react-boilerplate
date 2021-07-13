@@ -25,8 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Yarn & Node install cache
-        uses: EgorDm/gha-yarn-node-cache@v1
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.2.0
 
-      - name: build
-        run: yarn build
+      - name: Install
+        uses: CultureHQ/actions-yarn@master
+        with:
+          args: install
+          
+      - name: Build
+        uses: CultureHQ/actions-yarn@master
+        with:
+          args: build
