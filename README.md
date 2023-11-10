@@ -1,5 +1,8 @@
 # React Boilerplate
 
+> [!NOTE]
+> This is quite out of date. There are more modern approaches with a better DX.
+
 Opinionated starting point for creating a React single page app. Designed to include useful and quality of life tools for faster development time. With some emphasis on making thing beginner friendly.
 
 ### Why not use Create React App? (CRA)
