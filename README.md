@@ -1,7 +1,7 @@
 # React Boilerplate
 
 > [!NOTE]
-> This is quite out of date. There are more modern approaches with a better DX.
+> This is quite out of date. There are more modern approaches with a better DX. Lately I like to use the [T3 stack](https://create.t3.gg/)
 
 Opinionated starting point for creating a React single page app. Designed to include useful and quality of life tools for faster development time. With some emphasis on making thing beginner friendly.
 
